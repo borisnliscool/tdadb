@@ -4,10 +4,12 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import DefaultMarker from '$lib/markers/DefaultMarker.svelte';
 	import { currentMarker } from '$lib/stores';
+
+	import DatabaseIcon from '~icons/fa6-solid/database';
 </script>
 
 <svelte:head>
-	<title>TDA DB</title>
+	<title>TDA:DB</title>
 </svelte:head>
 
 <div class="grid grid-cols-3 2xl:grid-cols-4">
@@ -25,7 +27,18 @@
 
 			<Button variant="outline" on:click={() => currentMarker.set(null)}>Sluiten</Button>
 		{:else}
-			<h1 class="text-center text-lg font-semibold">Klik op een marker voor informatie</h1>
+			<div class="flex flex-col items-center gap-4">
+				<div class="flex items-center gap-4">
+					<span class="text-xl">
+						<DatabaseIcon />
+					</span>
+					<h1 class="text-center text-lg font-semibold">Welkom bij TDA:DB</h1>
+				</div>
+
+				<p>Klik op een marker voor meer informatie</p>
+
+				<div></div>
+			</div>
 		{/if}
 	</div>
 </div>
