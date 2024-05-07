@@ -2,10 +2,26 @@
 	import CopyrightFooter from '$lib/components/CopyrightFooter.svelte';
 	import Map from '$lib/components/Map.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
+	import Checkbox from '$lib/components/ui/checkbox/checkbox.svelte';
+	import * as Table from '$lib/components/ui/table';
 	import DefaultMarker from '$lib/markers/DefaultMarker.svelte';
-	import { currentMarker } from '$lib/stores';
-
+	import { MapIconType, currentMarker, shownMarkerTypes } from '$lib/stores';
 	import DatabaseIcon from '~icons/fa6-solid/database';
+
+	let markers: Record<
+		MapIconType,
+		{
+			icon: string;
+			title: string;
+		}
+	> = {
+		[MapIconType.DRUG_SALE]: {
+			icon: '/markers/radar_crim_drugs.png',
+			title: 'Drugs verkoop locaties'
+		}
+	};
+
+	const assertMapIcon = (x: string): MapIconType => x as MapIconType;
 </script>
 
 <svelte:head>
@@ -37,7 +53,43 @@
 
 				<p>Klik op een marker voor meer informatie</p>
 
-				<div></div>
+				<Table.Root>
+					<Table.Header>
+						<Table.Row>
+							<Table.Head class="w-2"></Table.Head>
+							<Table.Head class="w-4">Marker</Table.Head>
+							<Table.Head>Informatie</Table.Head>
+						</Table.Row>
+					</Table.Header>
+
+					<Table.Body>
+						{#each Object.entries(markers) as [type, marker]}
+							<Table.Row
+								on:click={() => {
+									if (!$shownMarkerTypes.includes(assertMapIcon(type))) {
+										shownMarkerTypes.set([...$shownMarkerTypes, assertMapIcon(type)]);
+									} else {
+										shownMarkerTypes.set(
+											$shownMarkerTypes.filter((x) => x !== assertMapIcon(type))
+										);
+									}
+								}}
+								class="cursor-pointer select-none"
+							>
+								<Table.Cell>
+									<Checkbox
+										class="pointer-events-none"
+										checked={$shownMarkerTypes.includes(assertMapIcon(type))}
+									/>
+								</Table.Cell>
+								<Table.Cell class="grid place-items-center">
+									<img src={marker.icon} alt={marker.title} class="size-6" />
+								</Table.Cell>
+								<Table.Cell>{marker.title}</Table.Cell>
+							</Table.Row>
+						{/each}
+					</Table.Body>
+				</Table.Root>
 			</div>
 		{/if}
 	</div>

@@ -2,7 +2,7 @@ import L from 'leaflet';
 import { writable } from 'svelte/store';
 import type { MapMarker } from './types';
 
-enum MapIconType {
+export enum MapIconType {
 	DRUG_SALE = 'DRUG_SALE'
 }
 
@@ -26,7 +26,8 @@ export const allMarkers = writable<MapMarker[]>([
 		title: 'Marker 1',
 		options: {
 			icon: mapIcons.DRUG_SALE
-		}
+		},
+		type: MapIconType.DRUG_SALE
 	},
 	{
 		lat: 62.9152,
@@ -34,7 +35,8 @@ export const allMarkers = writable<MapMarker[]>([
 		title: 'Marker 2',
 		options: {
 			icon: mapIcons.DRUG_SALE
-		}
+		},
+		type: MapIconType.DRUG_SALE
 	},
 	{
 		lat: 40.6806,
@@ -42,7 +44,8 @@ export const allMarkers = writable<MapMarker[]>([
 		title: 'Marker 3',
 		options: {
 			icon: mapIcons.DRUG_SALE
-		}
+		},
+		type: MapIconType.DRUG_SALE
 	},
 	{
 		lat: 59.1984,
@@ -50,7 +53,8 @@ export const allMarkers = writable<MapMarker[]>([
 		title: 'Marker 4',
 		options: {
 			icon: mapIcons.DRUG_SALE
-		}
+		},
+		type: MapIconType.DRUG_SALE
 	},
 	{
 		lat: 17.9787,
@@ -58,7 +62,8 @@ export const allMarkers = writable<MapMarker[]>([
 		title: 'Marker 5',
 		options: {
 			icon: mapIcons.DRUG_SALE
-		}
+		},
+		type: MapIconType.DRUG_SALE
 	},
 	{
 		lat: -16.2568,
@@ -66,7 +71,8 @@ export const allMarkers = writable<MapMarker[]>([
 		title: 'Marker 6',
 		options: {
 			icon: mapIcons.DRUG_SALE
-		}
+		},
+		type: MapIconType.DRUG_SALE
 	},
 	{
 		lat: -48.3124,
@@ -74,7 +80,8 @@ export const allMarkers = writable<MapMarker[]>([
 		title: 'Marker 7',
 		options: {
 			icon: mapIcons.DRUG_SALE
-		}
+		},
+		type: MapIconType.DRUG_SALE
 	},
 	{
 		lat: 44.056,
@@ -82,7 +89,8 @@ export const allMarkers = writable<MapMarker[]>([
 		title: 'Marker 8',
 		options: {
 			icon: mapIcons.DRUG_SALE
-		}
+		},
+		type: MapIconType.DRUG_SALE
 	},
 	{
 		lat: -27.6446,
@@ -90,7 +98,8 @@ export const allMarkers = writable<MapMarker[]>([
 		title: 'Marker 9',
 		options: {
 			icon: mapIcons.DRUG_SALE
-		}
+		},
+		type: MapIconType.DRUG_SALE
 	},
 	{
 		lat: -46.4983,
@@ -98,7 +107,8 @@ export const allMarkers = writable<MapMarker[]>([
 		title: 'Marker 10',
 		options: {
 			icon: mapIcons.DRUG_SALE
-		}
+		},
+		type: MapIconType.DRUG_SALE
 	},
 	{
 		lat: -75.3756,
@@ -106,7 +116,8 @@ export const allMarkers = writable<MapMarker[]>([
 		title: 'Marker 11',
 		options: {
 			icon: mapIcons.DRUG_SALE
-		}
+		},
+		type: MapIconType.DRUG_SALE
 	},
 	{
 		lat: -76.9206,
@@ -114,7 +125,8 @@ export const allMarkers = writable<MapMarker[]>([
 		title: 'Marker 12',
 		options: {
 			icon: mapIcons.DRUG_SALE
-		}
+		},
+		type: MapIconType.DRUG_SALE
 	},
 	{
 		lat: -73.6277,
@@ -122,7 +134,10 @@ export const allMarkers = writable<MapMarker[]>([
 		title: 'Marker 13',
 		options: {
 			icon: mapIcons.DRUG_SALE
-		}
+		},
+		type: MapIconType.DRUG_SALE
 	}
 ]);
 export const currentMarker = writable<MapMarker | null>(null);
+
+export const shownMarkerTypes = writable<MapIconType[]>([MapIconType.DRUG_SALE]);

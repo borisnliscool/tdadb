@@ -3,10 +3,11 @@
 	import 'leaflet/dist/leaflet.css';
 
 	import { cn } from '$lib/cn';
-	import { allMarkers, currentMarker } from '$lib/stores';
+	import { allMarkers, currentMarker, shownMarkerTypes } from '$lib/stores';
 	import { LeafletMap, TileLayer } from 'svelte-leafletjs';
 
 	let map: LeafletMap | undefined;
+	let markers: L.Marker<any>[] = [];
 
 	const mapOptions = {
 		center: [-67.5, -15] as [number, number],
@@ -27,28 +28,41 @@
 
 	// TODO: set bounds
 
-	let className = '';
-	export { className as class };
-
 	const resizeMap = () => {
 		if (!map) return;
 		const lMap = map.getMap()!;
 		lMap.invalidateSize();
 	};
 
-	$: if (map?.getMap()) {
+	const clearMarkers = () => markers.forEach((m) => m.remove());
+
+	const rerenderMarkers = () => {
+		clearMarkers();
+
+		if (!map) return;
 		const lMap = map.getMap()!;
 
 		$allMarkers.forEach((data) => {
+			if (!$shownMarkerTypes.includes(data.type)) return;
+
 			const marker = L.marker([data.lat, data.lng], data.options);
 			marker.on('click', () => currentMarker.set(data));
 			marker.addTo(lMap);
+			markers = [...markers, marker];
 		});
+	};
 
-		lMap.on('click', (e) => {
+	$: if (map?.getMap()) {
+		rerenderMarkers();
+		map.getMap()!.on('click', (e) => {
 			console.log(e.latlng);
 		});
 	}
+
+	$: $shownMarkerTypes && rerenderMarkers();
+
+	let className = '';
+	export { className as class };
 </script>
 
 <svelte:window on:resize={resizeMap} />
