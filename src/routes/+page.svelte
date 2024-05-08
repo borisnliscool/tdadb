@@ -83,7 +83,7 @@
 				<div class="flex w-full flex-col gap-2">
 					<p class="text-sm text-muted-foreground">Map achtergrond</p>
 
-					<RadioGroup.Root value={MapType.SATELLITE}>
+					<RadioGroup.Root value={$currentMapType}>
 						<div class="flex items-center space-x-2">
 							<RadioGroup.Item
 								value={MapType.SATELLITE}
