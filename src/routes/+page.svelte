@@ -5,9 +5,11 @@
 	import DefaultMarker from '$lib/components/markers/DefaultMarker.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Checkbox from '$lib/components/ui/checkbox/checkbox.svelte';
+	import Label from '$lib/components/ui/label/label.svelte';
+	import * as RadioGroup from '$lib/components/ui/radio-group';
 	import * as Table from '$lib/components/ui/table';
-	import { currentMarker, shownMarkerTypes } from '$lib/stores';
-	import { MapIconType } from '$lib/types';
+	import { currentMapType, currentMarker, shownMarkerTypes } from '$lib/stores';
+	import { MapIconType, MapType } from '$lib/types';
 	import { fade } from 'svelte/transition';
 
 	import DiscordIcon from '~icons/fa6-brands/discord';
@@ -66,15 +68,40 @@
 				<Button variant="outline" on:click={() => currentMarker.set(null)}>Sluiten</Button>
 			{/key}
 		{:else}
-			<div class="flex flex-col items-center gap-4">
-				<div class="flex items-center gap-4">
-					<span class="text-xl">
-						<DatabaseIcon />
-					</span>
-					<h1 class="text-center text-lg font-semibold">Welkom bij TDA:DB</h1>
+			<div class="flex flex-col items-center gap-8">
+				<div class="flex flex-col items-center gap-4">
+					<div class="flex items-center gap-4">
+						<span class="text-xl">
+							<DatabaseIcon />
+						</span>
+						<h1 class="text-center text-lg font-semibold">Welkom bij TDA:DB</h1>
+					</div>
+
+					<p>Klik op een marker voor meer informatie</p>
 				</div>
 
-				<p>Klik op een marker voor meer informatie</p>
+				<div class="flex w-full flex-col gap-2">
+					<p class="text-sm text-muted-foreground">Map achtergrond</p>
+
+					<RadioGroup.Root value={MapType.SATELLITE}>
+						<div class="flex items-center space-x-2">
+							<RadioGroup.Item
+								value={MapType.SATELLITE}
+								id={MapType.SATELLITE}
+								on:click={() => ($currentMapType = MapType.SATELLITE)}
+							/>
+							<Label for={MapType.SATELLITE}>Satelliet</Label>
+						</div>
+						<div class="flex items-center space-x-2">
+							<RadioGroup.Item
+								value={MapType.ATLAS}
+								id={MapType.ATLAS}
+								on:click={() => ($currentMapType = MapType.ATLAS)}
+							/>
+							<Label for={MapType.ATLAS}>Atlas</Label>
+						</div>
+					</RadioGroup.Root>
+				</div>
 
 				<Table.Root>
 					<Table.Header>

@@ -4,7 +4,8 @@
 
 	import { allMarkers, mapIcons } from '$data/markers';
 	import { cn } from '$lib/cn';
-	import { currentMarker, shownMarkerTypes } from '$lib/stores';
+	import { currentMapType, currentMarker, shownMarkerTypes } from '$lib/stores';
+	import { MapType } from '$lib/types';
 	import { LeafletMap, TileLayer } from 'svelte-leafletjs';
 	import { get } from 'svelte/store';
 
@@ -20,7 +21,6 @@
 		attributionControl: false
 	};
 
-	const tileUrl = '/map/satalite/{z}/{x}/{y}.jpg';
 	const tileOptions = {
 		minZoom: 0,
 		maxZoom: 20,
@@ -72,14 +72,29 @@
 
 <svelte:window on:resize={resizeMap} />
 
-<div class={cn('relative z-0 h-full w-full', className)}>
+<div
+	class={cn('relative z-0 h-full w-full', className)}
+	class:atlas={$currentMapType === MapType.ATLAS}
+	class:satellite={$currentMapType === MapType.SATELLITE}
+>
 	<LeafletMap bind:this={map} options={mapOptions}>
-		<TileLayer url={tileUrl} options={tileOptions} />
+		<TileLayer
+			url={`/map/${$currentMapType.toLowerCase()}/{z}/{x}/{y}.jpg`}
+			options={tileOptions}
+		/>
 	</LeafletMap>
 </div>
 
 <style lang="scss">
-	:global(.leaflet-container) {
-		@apply bg-[#153e6a];
+	.atlas {
+		:global(.leaflet-container) {
+			@apply bg-[#0fa8d2];
+		}
+	}
+
+	.satellite {
+		:global(.leaflet-container) {
+			@apply bg-[#153e6a];
+		}
 	}
 </style>

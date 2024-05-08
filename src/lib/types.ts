@@ -14,4 +14,9 @@ enum MapIconType {
 	DRUG_SALE = 'DRUG_SALE'
 }
 
-export { MapIconType, type MapMarker };
+enum MapType {
+	SATELLITE = 'SATELLITE',
+	ATLAS = 'ATLAS'
+}
+
+export { MapIconType, MapType, type MapMarker };
