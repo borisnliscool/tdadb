@@ -44,27 +44,27 @@
 	<title>TDA:DB</title>
 </svelte:head>
 
-<div
-	class="fixed left-0 top-0 z-50 m-4 rounded-lg border bg-background/85 p-1 shadow-lg backdrop-blur-md"
->
-	<LightSwitch />
-	<Button href="https://boris.foo/discord" target="_blank" variant="outline" size="icon">
-		<DiscordIcon class="size-4" />
-	</Button>
-	<Button
-		href="https://github.com/borisnliscool/tdadb"
-		target="_blank"
-		variant="outline"
-		size="icon"
-	>
-		<GithubIcon class="size-4" />
-	</Button>
+<div class="absolute left-0 top-0 z-50">
+	<div class="m-4 rounded-lg border bg-background/85 p-1 shadow-lg backdrop-blur-md">
+		<LightSwitch />
+		<Button href="https://boris.foo/discord" target="_blank" variant="outline" size="icon">
+			<DiscordIcon class="size-4" />
+		</Button>
+		<Button
+			href="https://github.com/borisnliscool/tdadb"
+			target="_blank"
+			variant="outline"
+			size="icon"
+		>
+			<GithubIcon class="size-4" />
+		</Button>
+	</div>
 </div>
 
-<div class="grid grid-cols-3 2xl:grid-cols-4">
-	<Map class="col-span-2 h-screen 2xl:col-span-3" />
+<div class="grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4">
+	<Map class="col-span-2 h-[85vh] md:h-screen 2xl:col-span-3" />
 
-	<div class="col-span-1 flex h-full flex-col justify-between gap-4 border-l p-6">
+	<div class="col-span-1 flex h-full min-h-screen flex-col justify-between gap-4 border-l p-6 py-8">
 		{#if $currentMarker}
 			{#key $currentMarker}
 				<div class="flex flex-col gap-4" in:fade={{ duration: 150 }}>
