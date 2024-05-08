@@ -2,15 +2,16 @@
 	import L from 'leaflet';
 	import 'leaflet/dist/leaflet.css';
 
-	import { allMarkers } from '$data/markers';
+	import { allMarkers, mapIcons } from '$data/markers';
 	import { cn } from '$lib/cn';
 	import { currentMarker, shownMarkerTypes } from '$lib/stores';
 	import { LeafletMap, TileLayer } from 'svelte-leafletjs';
+	import { get } from 'svelte/store';
 
 	let map: LeafletMap | undefined;
 	let markers: L.Marker<any>[] = [];
 
-	const mapOptions = {
+	const mapOptions: L.MapOptions = {
 		center: [-67.5, -15] as [number, number],
 		minZoom: 2,
 		maxZoom: 5,
@@ -45,8 +46,11 @@
 
 		for (const data of allMarkers) {
 			if ($shownMarkerTypes.includes(data.type)) {
-				const marker = L.marker([data.lat, data.lng], data.options);
-				marker.on('click', () => currentMarker.set(data));
+				const marker = L.marker(
+					[data.lat, data.lng],
+					data.options ?? { icon: mapIcons[data.type] }
+				);
+				marker.on('click', () => (get(currentMarker) !== data ? currentMarker.set(data) : null));
 				marker.addTo(lMap);
 				markers = [...markers, marker];
 			}

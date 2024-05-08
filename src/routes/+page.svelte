@@ -8,6 +8,7 @@
 	import * as Table from '$lib/components/ui/table';
 	import { currentMarker, shownMarkerTypes } from '$lib/stores';
 	import { MapIconType } from '$lib/types';
+	import { fade } from 'svelte/transition';
 
 	import DiscordIcon from '~icons/fa6-brands/discord';
 	import GithubIcon from '~icons/fa6-brands/github';
@@ -33,7 +34,9 @@
 	<title>TDA:DB</title>
 </svelte:head>
 
-<div class="fixed left-0 top-0 z-50 m-4 rounded-lg border bg-background/85 p-1 backdrop-blur-md">
+<div
+	class="fixed left-0 top-0 z-50 m-4 rounded-lg border bg-background/85 p-1 shadow-lg backdrop-blur-md"
+>
 	<LightSwitch />
 	<Button href="https://boris.foo/discord" target="_blank" variant="outline" size="icon">
 		<DiscordIcon class="size-4" />
@@ -53,13 +56,15 @@
 
 	<div class="col-span-1 flex h-full flex-col justify-between gap-4 border-l p-6">
 		{#if $currentMarker}
-			<div class="flex flex-col gap-4">
-				<h1 class="text-center text-lg font-semibold">{$currentMarker.title}</h1>
+			{#key $currentMarker}
+				<div class="flex flex-col gap-4" in:fade={{ duration: 150 }}>
+					<h1 class="text-center text-lg font-semibold">{$currentMarker.title}</h1>
 
-				<svelte:component this={$currentMarker.component ?? DefaultMarker} />
-			</div>
+					<svelte:component this={$currentMarker.component ?? DefaultMarker} />
+				</div>
 
-			<Button variant="outline" on:click={() => currentMarker.set(null)}>Sluiten</Button>
+				<Button variant="outline" on:click={() => currentMarker.set(null)}>Sluiten</Button>
+			{/key}
 		{:else}
 			<div class="flex flex-col items-center gap-4">
 				<div class="flex items-center gap-4">
