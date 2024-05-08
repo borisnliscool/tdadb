@@ -51,9 +51,7 @@
 <div class="grid grid-cols-3 2xl:grid-cols-4">
 	<Map class="col-span-2 h-screen 2xl:col-span-3" />
 
-	<div
-		class="col-span-1 flex h-full flex-col justify-between gap-4 border-l border-neutral-700 p-6"
-	>
+	<div class="col-span-1 flex h-full flex-col justify-between gap-4 border-l p-6">
 		{#if $currentMarker}
 			<div class="flex flex-col gap-4">
 				<h1 class="text-center text-lg font-semibold">{$currentMarker.title}</h1>
