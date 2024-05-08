@@ -30,6 +30,10 @@
 		[MapIconType.WEED]: {
 			icon: '/markers/radar_weed_stash.png',
 			title: 'Wiet pluk locaties'
+		},
+		[MapIconType.BURGLARY]: {
+			icon: '/markers/radar_stash_house.png',
+			title: 'Inbraak locaties'
 		}
 	};
 
