@@ -11,7 +11,8 @@ interface MapMarker {
 }
 
 enum MapIconType {
-	DRUG_SALE = 'DRUG_SALE'
+	DRUG_SALE = 'DRUG_SALE',
+	WEED = 'WEED'
 }
 
 enum MapType {

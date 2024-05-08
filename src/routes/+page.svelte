@@ -25,7 +25,11 @@
 	> = {
 		[MapIconType.DRUG_SALE]: {
 			icon: '/markers/radar_crim_drugs.png',
-			title: 'Drugs verkoop locaties'
+			title: 'Drug quicksell locaties'
+		},
+		[MapIconType.WEED]: {
+			icon: '/markers/radar_weed_stash.png',
+			title: 'Wiet pluk locaties'
 		}
 	};
 
@@ -90,7 +94,7 @@
 								id={MapType.SATELLITE}
 								on:click={() => ($currentMapType = MapType.SATELLITE)}
 							/>
-							<Label for={MapType.SATELLITE}>Satelliet</Label>
+							<Label class="cursor-pointer select-none" for={MapType.SATELLITE}>Satelliet</Label>
 						</div>
 						<div class="flex items-center space-x-2">
 							<RadioGroup.Item
@@ -98,7 +102,7 @@
 								id={MapType.ATLAS}
 								on:click={() => ($currentMapType = MapType.ATLAS)}
 							/>
-							<Label for={MapType.ATLAS}>Atlas</Label>
+							<Label class="cursor-pointer select-none" for={MapType.ATLAS}>Atlas</Label>
 						</div>
 					</RadioGroup.Root>
 				</div>
