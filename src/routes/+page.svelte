@@ -4,7 +4,7 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Checkbox from '$lib/components/ui/checkbox/checkbox.svelte';
 	import * as Table from '$lib/components/ui/table';
-	import DefaultMarker from '$lib/markers/DefaultMarker.svelte';
+	import DefaultMarker from '$lib/components/markers/DefaultMarker.svelte';
 	import { MapIconType, currentMarker, shownMarkerTypes } from '$lib/stores';
 	import DatabaseIcon from '~icons/fa6-solid/database';
 
