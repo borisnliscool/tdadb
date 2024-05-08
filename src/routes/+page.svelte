@@ -62,7 +62,7 @@
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4">
-	<Map class="col-span-2 h-[85vh] md:h-screen 2xl:col-span-3" />
+	<Map class="col-span-2 h-[85dvh] md:h-screen 2xl:col-span-3" />
 
 	<div class="col-span-1 flex h-full min-h-screen flex-col justify-between gap-4 border-l p-6 py-8">
 		{#if $currentMarker}
