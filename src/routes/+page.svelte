@@ -1,5 +1,6 @@
 <script lang="ts">
 	import CopyrightFooter from '$lib/components/CopyrightFooter.svelte';
+	import LightSwitch from '$lib/components/LightSwitch.svelte';
 	import Map from '$lib/components/Map.svelte';
 	import DefaultMarker from '$lib/components/markers/DefaultMarker.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
@@ -7,9 +8,12 @@
 	import * as Table from '$lib/components/ui/table';
 	import { currentMarker, shownMarkerTypes } from '$lib/stores';
 	import { MapIconType } from '$lib/types';
+
+	import DiscordIcon from '~icons/fa6-brands/discord';
+	import GithubIcon from '~icons/fa6-brands/github';
 	import DatabaseIcon from '~icons/fa6-solid/database';
 
-	let activeMarkerTypes: Record<
+	let markerTypeNames: Record<
 		MapIconType,
 		{
 			icon: string;
@@ -28,6 +32,21 @@
 <svelte:head>
 	<title>TDA:DB</title>
 </svelte:head>
+
+<div class="fixed left-0 top-0 z-50 m-4 rounded-lg border bg-background/85 p-1 backdrop-blur-md">
+	<LightSwitch />
+	<Button href="https://boris.foo/discord" target="_blank" variant="outline" size="icon">
+		<DiscordIcon class="size-4" />
+	</Button>
+	<Button
+		href="https://github.com/borisnliscool/tdadb"
+		target="_blank"
+		variant="outline"
+		size="icon"
+	>
+		<GithubIcon class="size-4" />
+	</Button>
+</div>
 
 <div class="grid grid-cols-3 2xl:grid-cols-4">
 	<Map class="col-span-2 h-screen 2xl:col-span-3" />
@@ -64,7 +83,7 @@
 					</Table.Header>
 
 					<Table.Body>
-						{#each Object.entries(activeMarkerTypes) as [type, marker]}
+						{#each Object.entries(markerTypeNames) as [type, marker]}
 							<Table.Row
 								on:click={() => {
 									if (!$shownMarkerTypes.includes(assertMapIcon(type))) {
@@ -96,6 +115,6 @@
 	</div>
 </div>
 
-<div class="fixed bottom-0 left-0 p-2 text-center text-xs drop-shadow-sm">
+<div class="fixed bottom-0 left-0 p-2 text-center text-xs text-white drop-shadow-sm">
 	<CopyrightFooter />
 </div>
