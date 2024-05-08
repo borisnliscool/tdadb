@@ -1,14 +1,15 @@
 <script lang="ts">
 	import CopyrightFooter from '$lib/components/CopyrightFooter.svelte';
 	import Map from '$lib/components/Map.svelte';
+	import DefaultMarker from '$lib/components/markers/DefaultMarker.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Checkbox from '$lib/components/ui/checkbox/checkbox.svelte';
 	import * as Table from '$lib/components/ui/table';
-	import DefaultMarker from '$lib/components/markers/DefaultMarker.svelte';
-	import { MapIconType, currentMarker, shownMarkerTypes } from '$lib/stores';
+	import { currentMarker, shownMarkerTypes } from '$lib/stores';
+	import { MapIconType } from '$lib/types';
 	import DatabaseIcon from '~icons/fa6-solid/database';
 
-	let markers: Record<
+	let activeMarkerTypes: Record<
 		MapIconType,
 		{
 			icon: string;
@@ -63,7 +64,7 @@
 					</Table.Header>
 
 					<Table.Body>
-						{#each Object.entries(markers) as [type, marker]}
+						{#each Object.entries(activeMarkerTypes) as [type, marker]}
 							<Table.Row
 								on:click={() => {
 									if (!$shownMarkerTypes.includes(assertMapIcon(type))) {

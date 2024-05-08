@@ -1,7 +1,6 @@
 import type { ComponentType, SvelteComponent } from 'svelte';
-import type { MapIconType } from './stores';
 
-export interface MapMarker {
+interface MapMarker {
 	lat: number;
 	lng: number;
 	options?: L.MarkerOptions;
@@ -10,3 +9,9 @@ export interface MapMarker {
 	title: string;
 	component?: ComponentType<SvelteComponent>;
 }
+
+enum MapIconType {
+	DRUG_SALE = 'DRUG_SALE'
+}
+
+export { MapIconType, type MapMarker };

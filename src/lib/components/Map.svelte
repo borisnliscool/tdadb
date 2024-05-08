@@ -2,8 +2,9 @@
 	import L from 'leaflet';
 	import 'leaflet/dist/leaflet.css';
 
+	import { allMarkers } from '$data/markers';
 	import { cn } from '$lib/cn';
-	import { allMarkers, currentMarker, shownMarkerTypes } from '$lib/stores';
+	import { currentMarker, shownMarkerTypes } from '$lib/stores';
 	import { LeafletMap, TileLayer } from 'svelte-leafletjs';
 
 	let map: LeafletMap | undefined;
@@ -42,14 +43,14 @@
 		if (!map) return;
 		const lMap = map.getMap()!;
 
-		$allMarkers.forEach((data) => {
-			if (!$shownMarkerTypes.includes(data.type)) return;
-
-			const marker = L.marker([data.lat, data.lng], data.options);
-			marker.on('click', () => currentMarker.set(data));
-			marker.addTo(lMap);
-			markers = [...markers, marker];
-		});
+		for (const data of allMarkers) {
+			if ($shownMarkerTypes.includes(data.type)) {
+				const marker = L.marker([data.lat, data.lng], data.options);
+				marker.on('click', () => currentMarker.set(data));
+				marker.addTo(lMap);
+				markers = [...markers, marker];
+			}
+		}
 	};
 
 	$: if (map?.getMap()) {
