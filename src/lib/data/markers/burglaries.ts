@@ -114,5 +114,11 @@ export default [
 		lng: -25.7896,
 		title: 'Inbraak 19',
 		type: MapIconType.BURGLARY
+	},
+	{
+		lat: -62.4717, 
+		lng: 20.0067,
+		title: 'Inbraak 20',
+		type: MapIconType.BURGLARY
 	}
 ] as MapMarker[];
