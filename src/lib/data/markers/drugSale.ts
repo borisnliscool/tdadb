@@ -84,5 +84,11 @@ export default [
 		lng: -38.27636718750001,
 		title: 'Marker 14',
 		type: MapIconType.DRUG_SALE
+	},
+	{
+		lat: -63.2537,
+		lng: -66.8836,
+		title: 'Marker 15',
+		type: MapIconType.DRUG_SALE
 	}
 ] as MapMarker[];
