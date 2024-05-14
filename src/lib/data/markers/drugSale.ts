@@ -1,3 +1,4 @@
+import Marker11 from '$lib/components/markers/drugsale/Marker11.svelte';
 import { MapIconType, type MapMarker } from '$lib/types';
 
 export default [
@@ -65,7 +66,8 @@ export default [
 		lat: -75.3756,
 		lng: -3.6551,
 		title: 'Marker 11',
-		type: MapIconType.DRUG_SALE
+		type: MapIconType.DRUG_SALE,
+		component: Marker11
 	},
 	{
 		lat: -76.9206,

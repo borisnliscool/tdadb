@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
+	import BigImageContainer from '$lib/components/bigimage/BigImageContainer.svelte';
 	import { ModeWatcher } from 'mode-watcher';
 	import '../app.scss';
 </script>
@@ -17,6 +18,7 @@
 </svelte:head>
 
 <ModeWatcher />
+<BigImageContainer />
 
 <div class="min-h-screen w-full">
 	<slot />
