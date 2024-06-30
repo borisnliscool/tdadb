@@ -34,6 +34,10 @@
 		[MapIconType.BURGLARY]: {
 			icon: '/markers/radar_stash_house.png',
 			title: 'Inbraak locaties'
+		},
+		[MapIconType.SPEED_TRAP]: {
+			icon: '/markers/radar_camera.png',
+			title: 'Flitser locaties'
 		}
 	};
 

@@ -6,5 +6,6 @@ export const currentMapType = writable<MapType>(MapType.SATELLITE);
 export const shownMarkerTypes = writable<MapIconType[]>([
 	MapIconType.DRUG_SALE,
 	MapIconType.WEED,
-	MapIconType.BURGLARY
+	MapIconType.BURGLARY,
+	MapIconType.SPEED_TRAP
 ]);
