@@ -9,7 +9,7 @@ const iconSizes: Record<MapIconType, [number, number]> = {
 	[MapIconType.DRUG_SALE]: [30, 30],
 	[MapIconType.WEED]: [30, 30],
 	[MapIconType.BURGLARY]: [30, 30],
-	[MapIconType.SPEED_TRAP]: [15, 15]
+	[MapIconType.SPEED_TRAP]: [20, 20]
 };
 
 export const mapIcons: Record<MapIconType, L.Icon> = {
